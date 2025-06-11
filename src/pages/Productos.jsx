@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom'; // solo useNavigate
 import { ProductosContext } from '../context/ContextApi';
 import { CarritoContext } from '../context/carritoContext'; // Importa el contexto del carrito
+const apiUrl = import.meta.env.VITE_API_URL;   
 
 const Productos = () => {
   const { productos, loading, error } = useContext(ProductosContext);
@@ -46,7 +47,8 @@ const Productos = () => {
               >
                 <div className="seg4">
                   <img
-                    src={`http://localhost:3001/uploads/${producto.imagen}`}
+                  
+                    src={`${apiUrl}/uploads/${producto.imagen}`}
                     alt={producto.nombre}
                   />
                 </div>

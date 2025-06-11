@@ -1,4 +1,5 @@
 import React, { createContext, useState, useEffect } from 'react';
+const apiUrl = import.meta.env.VITE_API_URL; 
 
 // Crear el contexto
 export const ProductosContext = createContext();
@@ -12,7 +13,7 @@ export const ProductosProvider = ({ children }) => {
   // Función para obtener datos desde la API
   const fetchProductos = async () => {
     try {
-      const response = await fetch('http://localhost:3001/api/productos'); 
+      const response = await fetch(`${apiUrl}/api/productos`); 
       if (!response.ok) throw new Error('Error al obtener los productos');
       const data = await response.json();
       setProductos(data);

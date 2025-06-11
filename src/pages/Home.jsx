@@ -6,6 +6,7 @@ import imagen1 from "../assets/Imagen/galeria/register.png"
 import imagen2 from "../assets/Imagen/galeria/promo.png"
 import imagen3 from "../assets/Imagen/galeria/reloj.png"
 import { CarritoContext } from '../context/carritoContext';
+const apiUrl = import.meta.env.VITE_API_URL; 
 
 const Home = () => {
     const { agregarItem } = useContext(CarritoContext);
@@ -44,7 +45,7 @@ const Home = () => {
           <ul className="card">
             {productos.slice(0, 4).map((producto) => (
               <li className="card-content"  key={producto.id} onClick={() => NaviProductos(producto)}>
-              <div className="seg4">  <img src={`http://localhost:3001/uploads/${producto.imagen}`} alt={producto.nombre} /></div>
+              <div className="seg4">  <img src={`${apiUrl}/uploads/${producto.imagen}`} alt={producto.nombre} /></div>
                 <div className='seg1'><p className="card-title" >{producto.tipo_prenda} - {producto.tipo_metal}</p></div>
 
                 <div className='seg2'>

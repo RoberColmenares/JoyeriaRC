@@ -3,6 +3,7 @@ import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { ProductosContext } from '../context/ContextApi';
 import '../style/DetalleP.css';
 import { CarritoContext } from '../context/carritoContext';
+const apiUrl = import.meta.env.VITE_API_URL; 
 
 const ProductoDetalle = () => {
   const navigate = useNavigate();
@@ -32,7 +33,7 @@ const ProductoDetalle = () => {
   const producto = productos.find(p => p.id === parseInt(id));
 
   // URL base para imágenes
-  const BASE_URL = 'http://localhost:3001/uploads/';
+  const BASE_URL = `${apiUrl}/uploads/`;
   const images = producto?.imagenes
     ? producto.imagenes.map(img => BASE_URL + img)
     : producto
@@ -215,8 +216,9 @@ const ProductoDetalle = () => {
               onClick={() => navigateToProducto(producto)}
             >
               <div className="seg4">
+                
                 <img
-                  src={`http://localhost:3001/uploads/${producto.imagen}`}
+                  src={`${apiUrl}/uploads/${producto.imagen}`}
                   alt={producto.nombre}
                 />
               </div>

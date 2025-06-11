@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import "../style/Crear.css";
+const apiUrl = import.meta.env.VITE_API_URL; 
 
 const EditarPublicacion = () => {
   const { id } = useParams();
@@ -20,7 +21,7 @@ const EditarPublicacion = () => {
   useEffect(() => {
     const obtenerProducto = async () => {
       const token = localStorage.getItem('token');
-      const res = await fetch(`http://localhost:3001/api/productos/${id}`, {
+      const res = await fetch(`${apiUrl}/api/productos/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -43,7 +44,7 @@ const EditarPublicacion = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const token = localStorage.getItem('token');
-    const res = await fetch(`http://localhost:3001/api/productos/${id}`, {
+    const res = await fetch(`${apiUrl}/api/productos/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',

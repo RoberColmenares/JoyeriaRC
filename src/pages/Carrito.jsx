@@ -2,6 +2,7 @@ import { useContext } from 'react';
 import { CarritoContext } from '../context/carritoContext';
 import "../style/carrito.css";
 import { useNavigate } from 'react-router-dom'; // Importa useNavigate
+const apiUrl = import.meta.env.VITE_API_URL;  
 
 const Carrito = () => {
   const { carrito, eliminarItem } = useContext(CarritoContext);
@@ -36,7 +37,7 @@ const Carrito = () => {
             {carrito.map((item) => (
               <div className='carrito-contend' key={item.id}>
                 <img
-                  src={`http://localhost:3001/uploads/${item.imagen}`}
+                  src={`${apiUrl}/uploads/${item.imagen}`}
                   alt={item.nombre}
                 />
                 <div>

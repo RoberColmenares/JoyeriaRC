@@ -4,6 +4,7 @@ import "../style/Perfil.css";
 import { FaTrash, FaEdit } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+const apiUrl = import.meta.env.VITE_API_URL;  
 
 const Perfil = () => {
   const { user, loading } = useAut();
@@ -15,7 +16,7 @@ const Perfil = () => {
     const fetchPublicaciones = async () => {
       const token = localStorage.getItem("token");
       try {
-        const res = await fetch("http://localhost:3001/api/productos-usuario", {
+        const res = await fetch(`${apiUrl}/api/productos-usuario`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -55,7 +56,7 @@ if (loading || !user) return <p>Cargando perfil...</p>;
   event.stopPropagation(); // Detener la propagación del evento
   const token = localStorage.getItem("token");
   try {
-    const res = await fetch(`http://localhost:3001/api/productos/${id}`, {
+    const res = await fetch(`${apiUrl}/api/productos/${id}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -117,7 +118,8 @@ if (loading || !user) return <p>Cargando perfil...</p>;
               <FaEdit style={{ color: "blue", fontSize: "2.2em" }} />
             </button>
           </div>
-                   <div><img className="seg4" src={`http://localhost:3001/uploads/${pub.imagen}`} alt={pub.nombre}/></div>
+                   <div><img className="seg4" src={`${apiUrl}/uploads/${pub.imagen}`} alt={pub.nombre}/></div>
+                   
 
             <div className="seg1">
               <p className="card-title">{pub.tipo_prenda} - {pub.tipo_metal}</p>

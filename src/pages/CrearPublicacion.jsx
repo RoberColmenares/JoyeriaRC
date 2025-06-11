@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // ✅ Importa el hook
 import "../style/Crear.css";
+const apiUrl = import.meta.env.VITE_API_URL;  
 
 const CrearPublicacion = () => {
   const [formulario, setFormulario] = useState({
@@ -34,7 +35,7 @@ const CrearPublicacion = () => {
 
     try {
       const token = localStorage.getItem('token'); // o como lo manejes
-      const res = await fetch('http://localhost:3001/api/crear-publicacion', {
+      const res = await fetch(`${apiUrl}/api/crear-publicacion`, {
         method: 'POST',
         headers: {
           Authorization: `Bearer ${token}`,

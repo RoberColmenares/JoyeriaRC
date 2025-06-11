@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
+const apiUrl = import.meta.env.VITE_API_URL;  
 
 const AutenticacionContext = createContext();
 
@@ -12,7 +13,7 @@ export const ProveedorAut = ({ children }) => {
     if (tokenGuardado) {
       setIsAut(true);
       // Traemos info del usuario desde backend con ese token:
-      fetch("http://localhost:3001/api/perfil", {
+      fetch(`${apiUrl}/api/perfil`, {
         headers: { Authorization: `Bearer ${tokenGuardado}` },
       })
         .then((res) => {

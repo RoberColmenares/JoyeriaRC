@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAut } from '../context/ContextProvider';
+const apiUrl = import.meta.env.VITE_API_URL; 
 
 const Login = () => {
   const [formData, setFormData] = useState({ correo: '', password: '' });
@@ -31,7 +32,7 @@ const handleSubmit = async (e) => {
   if (validarFormulario()) {
     setLoading(true);
     try {
-      const response = await fetch('http://localhost:3001/api/login', {
+      const response = await fetch(`${apiUrl}/api/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import '../style/RegLog.css';
 import { useNavigate } from 'react-router-dom';
-
+const apiUrl = import.meta.env.VITE_API_URL;  
 const Register = () => {
   const [formData, setFormData] = useState({
     nombre: '',
@@ -44,7 +44,7 @@ const handleSubmit = async (e) => {
   e.preventDefault();
   if (validarFormulario()) {
     try {
-      const response = await fetch('http://localhost:3001/api/register', {
+      const response = await fetch(`${apiUrl}/api/register`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

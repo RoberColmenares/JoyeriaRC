@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { CarritoContext } from '../context/carritoContext';
+const apiUrl = import.meta.env.VITE_API_URL;  
 
 const ProductosPorCategoria = () => {
   const { categoria } = useParams();
@@ -17,7 +18,7 @@ const ProductosPorCategoria = () => {
       setLoading(true);
       setError(null);
       try {
-        const response = await fetch(`http://localhost:3001/api/categoria/${categoria}`);
+        const response = await fetch(`${apiUrl}/api/categoria/${categoria}`);
         const text = await response.text();
 
         try {
