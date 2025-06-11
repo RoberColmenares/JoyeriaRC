@@ -1,0 +1,144 @@
+/* ProfilePage.css */
+
+.profile-page {
+  display: flex;
+  flex-direction: row;
+  padding: 2rem;
+  background-color: #121212;
+  color: #ffffff;
+  min-height: 100vh;
+  gap: 2rem;
+}
+
+.user-profile {
+  flex: 1;
+  background-color: #1e1e1e;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+}
+
+.profile-avatar {
+  font-size: 4rem;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.profile-name {
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.profile-stars {
+  text-align: center;
+  color: gold;
+  margin-bottom: 1rem;
+}
+
+.profile-contact {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.profile-info p {
+  margin: 0.3rem 0;
+  font-size: 0.95rem;
+}
+
+.profile-right {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.user-actions,
+.user-products {
+  background-color: #1e1e1e;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+}
+
+.section-title {
+  margin-bottom: 1rem;
+}
+
+.section-subtitle {
+  margin-bottom: 1rem;
+  color: #aaa;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.edit-button,
+.create-button,
+.add-button,
+.delete-button {
+  padding: 0.5rem 1rem;
+  background-color: #333;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.edit-button:hover,
+.create-button:hover,
+.add-button:hover,
+.delete-button:hover {
+  background-color: #555;
+}
+
+.product-list {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.product-card {
+  background-color: #2a2a2a;
+  padding: 1rem;
+  border-radius: 12px;
+  width: 180px;
+  position: relative;
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.05);
+}
+
+.product-image {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.product-title {
+  margin: 0.5rem 0 0.2rem;
+  text-align: center;
+}
+
+.product-subtitle {
+  text-align: center;
+  color: #aaa;
+  font-size: 0.85rem;
+}
+
+.product-price {
+  text-align: center;
+  font-weight: bold;
+  margin: 0.5rem 0;
+}
+
+.delete-button {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background-color: transparent;
+  color: #ff4d4d;
+}

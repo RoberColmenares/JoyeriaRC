@@ -1,0 +1,109 @@
+.register {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 70%;
+
+    margin: 0 auto;
+    background-color: var(--color-primary);
+    color: var(--color-background);
+    font-weight: 700;
+    padding:5% ;
+    justify-content: space-between;
+    border-radius: 10px;
+    margin-top: 6em;
+}
+
+.register h2{
+ margin-bottom: 4%;
+}
+
+
+
+.mi-input {
+  width: 100%;
+  background-color: var(--color-secondary);
+  color: white;
+  font-weight: 500;
+
+  padding: 8px;
+  border: 1px solid #888; /* color del borde */
+  border-radius: 4px; /* esquinas redondeadas */
+  outline: none; /* quita el borde azul por defecto al hacer focus */
+  font-size: 16px;
+  text-align: center;
+  margin: 2% 0%;
+}
+
+.mi-input:focus {
+  border-color: #007bff; /* cambia color al hacer foco */
+  box-shadow: 0 0 4px rgba(0, 123, 255, 0.5); /* sombrita azul */
+}
+
+.mi-input::placeholder {
+  color: var(--color-primary);            /* Color del texto del placeholder */
+ 
+}
+
+.acepto{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 5%;
+}
+
+
+/*Login*/
+
+.mi-input-L {
+  width: 100%;
+  background-color: var(--color-Tercero);
+  font-weight: 100;
+
+  padding: 8px;
+  border: 1px solid #888; /* color del borde */
+  border-radius: 4px; /* esquinas redondeadas */
+  outline: none; /* quita el borde azul por defecto al hacer focus */
+  font-size: 16px;
+  text-align: center;
+  margin: 2% 0%;
+}
+
+.mi-input-L::placeholder {
+  color: var(--color-background);         /* Color del texto del placeholder */
+ 
+}
+
+
+.olviddaste{
+ 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 30%;
+}
+
+.olviddaste a{
+    color: rgb(38, 89, 230);
+    font-size: medium;
+
+    margin: 2%;
+    
+}
+
+@media (max-width: 540px) {
+    
+    .register{
+        width: 86%;
+    }
+    
+    .olviddaste{
+    width: 100%;
+}
+.olviddaste a{
+  font-size: small;
+
+}
+}
+
+

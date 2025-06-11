@@ -1,0 +1,260 @@
+.Contenedor-Barra {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 9999;
+  background-color: var(--color-background);
+  
+
+
+}
+
+.Barra{
+    display: flex;
+    text-align: center;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px 0px;
+    max-width: 1320px;
+    margin: 0 auto;
+    
+}
+
+.Barra div {
+    display: flex;
+    justify-content: center;
+  
+    width: 30%;
+}
+
+
+.Barra img{
+    
+    height: 5rem;
+    border-radius: 20%;
+    margin-right: 20px
+}
+
+.icon {
+    font-size: xx-large;
+    margin: 0% 3%;
+     transition: transform 0.2s ease-in-out;
+}
+
+.icon:hover {
+    transform: scale(1.2); /* crece un 20% al pasar el mouse */
+    color: var(--color-Tercero);
+}
+
+
+.menu-dropdown {
+  display: flex;
+  flex-direction: column;
+  align-items: center;  
+  color: var(--color-secondary);
+  
+  background-color: var(--color-primary);
+  padding: 10px;
+  position: absolute;
+  min-width: 220px;
+  top: 70px; /* ajusta según tu navbar */
+  right: 10px;
+ 
+  border-radius: 4px;
+}
+
+.barra-categorias{
+  max-width: 1320px;
+    margin: 0 auto;
+    
+    background-color: var(--color-primary);
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    gap: 12px; /* separa los botones */
+    padding: 0 10px;
+    user-select: none;
+   
+    
+}
+
+.barra-categorias button{
+    all: unset;
+    cursor: pointer;
+    margin: 0% 1%;
+    font-size: 1rem;
+    color: var(--color-secondary);
+    
+    font-weight: 700;
+    transition: color 0.3s ease, transform 0.3s ease, text-shadow 0.3s ease;
+    display: inline-block; /* para que el transform funcione bien */
+    
+}
+
+.barra-categorias button:hover,
+.barra-categorias button:focus {
+    color: var(--color-Tercero);
+    transform: scale(1.1);
+    
+}
+
+
+.btn-selector-categoria {
+  all: unset;
+  font-size: x-large;
+  display: flex;
+    flex-direction: column; 
+    margin: 4% 0%;
+}
+
+.btn-categoria{
+    all: unset;
+    display: flex;
+    flex-direction: column;
+    transition: color 0.3s ease, transform 0.3s ease, text-shadow 0.3s ease;
+    
+}
+
+.btn-categoria:hover,
+.btn-categoria:focus {
+    color: var(--color-Tercero);
+    transform: scale(1.1);
+    
+}
+
+
+.despliegue-categoria{
+    display: flex;
+    flex-direction: column;
+   
+    background-color: a;
+    justify-content: center;
+    align-items: center;
+    font-size: large;
+    color: black;
+    margin: 4% 0%;
+}
+
+.menu-dropdown .btn-style{
+    width: 160px;
+    margin: 2% 0%;
+    color: var(--color-primary);
+
+}
+
+
+
+
+
+
+.btn-brger {
+  display: none;
+  background: none;
+  color: var(--color-primary);
+  border: none;
+  cursor: pointer;
+   transition: transform 0.2s ease-in-out;
+}
+
+.carrito-icon-container {
+  position: relative;
+  display: inline-block;
+}
+
+.contador-carrito {
+  position: absolute;
+  top: -8px;
+  right: -10px;
+  background: red;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 50%;
+}
+
+
+
+
+
+
+
+
+
+
+/* Menú desplegable para móviles */
+
+/* Media query */
+@media (max-width: 768px) {
+  .menu {
+    display: none;
+}
+
+.icon{
+    margin: 0% 20%;
+}
+.btn-brger {
+    order: 2;
+    display: block;
+    font-size: xx-large;
+    font-weight: bold;    
+   
+   
+
+  }
+  .padding{
+    margin-right: 50px;
+  }
+
+  .menu-dropdown a {
+    text-decoration: none;
+    color: #333;
+    padding: 5px 0;
+    
+  }
+
+  .Barra{
+    justify-content: flex-end;
+    margin-right: 5%;
+   
+    
+}
+
+.Barra div {
+    
+   
+   width: 20%;
+   
+   
+}
+ .div1 {
+    margin-right: auto; /* Lo empuja a la derecha */
+    order: 0; /* Lo mueve al final */
+  }
+
+
+}
+
+@media (max-width: 540px) {
+
+body{
+     padding-top:  85px;
+}
+.barra-categorias{
+    color: var(--color-background);
+   
+}
+.btn-brger{
+    margin-left: 15px;
+    
+}
+
+.Barra img{
+    
+display: none;
+}
+}

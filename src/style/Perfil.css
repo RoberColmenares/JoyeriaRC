@@ -1,0 +1,80 @@
+.conteiner-perfil{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-top: 30px;
+
+
+}
+
+.info-user{
+    display: flex;
+    flex-direction: column;
+    padding: 1%;
+    align-items: center;
+   
+
+
+
+
+    
+}
+.info-user p{
+
+    font-size: 20px;
+    
+    
+}
+
+.publicaciones{
+  width: 100%;
+}
+
+.publicaciones .card-content{
+    width: 250px;
+}
+
+.func-btn {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 10px; /* Espacio entre botones */
+  padding: 5px;
+}
+
+.func-btn button {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 5px;
+  transition: transform 0.2s ease-in-out;
+}
+
+.func-btn button:hover {
+  transform: scale(1.2);
+  filter: brightness(1.2); /* Opcional: da un efecto de "brillo" */
+}
+
+
+@media (max-width: 768px) {
+
+    .conteiner-perfil{
+        flex-direction: column;
+        align-items: center;
+
+}
+
+.info-user{
+    width: 100%;
+        margin-top: 20px;
+
+    
+}
+
+
+.publicaciones{
+    width: 100%;
+}
+
+}

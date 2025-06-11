@@ -1,0 +1,232 @@
+.checkout-page {
+
+  color: #eee; /* Texto claro */
+  padding: 40px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.checkout-page h1 {
+  font-size: 2.5em;
+  margin-bottom: 30px;
+  color: #fff;
+}
+
+.checkout-container {
+  display: flex;
+  gap: 40px;
+  width: 90%;
+  max-width: 1200px;
+  background-color: #333; /* Fondo para los contenedores internos */
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+.billing-details,
+.order-summary {
+  flex: 1;
+  padding: 20px;
+  border: 1px solid #444; /* Borde sutil */
+  border-radius: 5px;
+}
+
+.billing-details h2,
+.order-summary h2 {
+  font-size: 1.8em;
+  margin-bottom: 20px;
+  color: #fff;
+}
+
+.billing-details h3 {
+  font-size: 1.2em;
+  margin-top: 25px;
+  margin-bottom: 15px;
+  color: #ccc;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #aaa;
+}
+
+.form-group input[type="text"] {
+  width: calc(100% - 20px); /* Ajusta para padding */
+  padding: 10px;
+  border: 1px solid white;
+  border-radius: 4px;
+  background-color: var(--color-primary);
+  color: black;
+  font-size: 1em;
+}
+
+.form-group.full-width {
+  grid-column: 1 / -1; /* Para que ocupe todo el ancho en una cuadrícula */
+}
+
+.order-summary .summary-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  padding-bottom: 5px;
+  border-bottom: 1px dotted #555;
+}
+
+.order-summary .summary-row.header {
+  font-weight: bold;
+  font-size: 1.1em;
+  color: #fff;
+  border-bottom: 2px solid #777;
+  margin-bottom: 15px;
+}
+
+.order-summary .summary-row.total {
+  font-weight: bold;
+  font-size: 1.3em;
+   color: var(--color-Tercero);/* Un color verde para el total */
+  border-top: 2px solid #777;
+  padding-top: 10px;
+  margin-top: 15px;
+}
+
+/* Estilo para el botón de realizar compra */
+
+
+.thank-you-message {
+  font-size: 1.5em;
+  color: var(--color-Tercero); /* Verde brillante */
+  text-align: center;
+  margin-top: 30px;
+  font-weight: bold;
+}
+
+/* Estilos para el botón de "Ir a Pagar" en Carrito.js */
+
+
+@media (max-width: 768px) {
+    .checkout-container {
+        flex-direction: column; /* Apila las secciones verticalmente */
+        gap: 20px; /* Reduce el espacio entre ellas */
+        padding: 20px; /* Reduce el padding del contenedor */
+        width: 95%; /* Ocupa un poco más de ancho */
+    }
+
+    .checkout-page h1 {
+        font-size: 2em; /* Reduce el tamaño del título principal */
+        margin-bottom: 20px;
+    }
+
+    .billing-details,
+    .order-summary {
+        padding: 15px; /* Reduce el padding interno */
+    }
+
+    .billing-details h2,
+    .order-summary h2 {
+        font-size: 1.5em; /* Reduce el tamaño de los subtítulos */
+        margin-bottom: 15px;
+    }
+
+    .billing-details h3 {
+        font-size: 1.1em;
+        margin-top: 20px;
+        margin-bottom: 10px;
+    }
+
+    .form-group input[type="text"] {
+        padding: 8px; /* Reduce el padding de los inputs */
+        font-size: 0.9em;
+    }
+
+    .order-summary .summary-row {
+        font-size: 0.95em; /* Ajusta el tamaño del texto del resumen */
+    }
+
+    .order-summary .summary-row.total {
+        font-size: 1.2em; /* Ajusta el tamaño del total */
+    }
+
+    .btn-style-checkout {
+        padding: 10px 20px; /* Ajusta el padding del botón de compra */
+        font-size: 1em;
+    }
+
+    .thank-you-message {
+        font-size: 1.3em; /* Ajusta el tamaño del mensaje de agradecimiento */
+        margin-top: 20px;
+    }
+}
+
+/* Para pantallas muy pequeñas (hasta 540px de ancho) */
+@media (max-width: 540px) {
+    .checkout-page {
+        padding: 20px; /* Reduce aún más el padding de la página */
+    }
+
+    .checkout-page h1 {
+        font-size: 1.8em; /* Más pequeño el título principal */
+    }
+
+    .checkout-container {
+        gap: 15px; /* Menos espacio entre secciones */
+        padding: 15px;
+        width: 100%; /* Ocupa todo el ancho */
+        border-radius: 0; /* Sin bordes redondeados en pantallas muy pequeñas para "rellenar" */
+    }
+
+    .billing-details,
+    .order-summary {
+        padding: 10px; /* Más pequeño el padding interno */
+    }
+
+    .billing-details h2,
+    .order-summary h2 {
+        font-size: 1.3em; /* Más pequeños los subtítulos */
+    }
+
+    .billing-details h3 {
+        font-size: 1em;
+        margin-top: 15px;
+        margin-bottom: 8px;
+    }
+
+    .form-group label {
+        font-size: 0.9em; /* Etiquetas un poco más pequeñas */
+    }
+
+    .form-group input[type="text"] {
+        padding: 7px; /* Aún más pequeño el padding de inputs */
+        font-size: 0.85em;
+    }
+
+    .order-summary .summary-row {
+        font-size: 0.85em; /* Texto del resumen más pequeño */
+        margin-bottom: 8px;
+    }
+
+    .order-summary .summary-row.header {
+        font-size: 1em;
+    }
+
+    .order-summary .summary-row.total {
+        font-size: 1.1em;
+    }
+
+    .btn-style-checkout {
+        padding: 8px 15px; /* Botón de compra más pequeño */
+        font-size: 0.95em;
+    }
+
+    .thank-you-message {
+        font-size: 1.2em; /* Mensaje de agradecimiento más pequeño */
+        margin-top: 15px;
+    }
+}
