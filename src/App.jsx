@@ -9,7 +9,7 @@ import Contacto from './pages/Contacto';
 import PerfilVisitante from './pages/PerfilVisitante';
 import CrearPublicacion from './pages/CrearPublicacion';
 import Carrito from './pages/Carrito';
-import Checkout from './pages/Checkout';
+import Checkout from './pages/Checkout.jsx';
 import RutaPrivada from './components/RutaPrivada';
 import LayoutConBanner from './components/LayoutConBanner';  // nuevo
 import Footer from './components/Footer';
