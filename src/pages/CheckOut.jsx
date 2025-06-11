@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom'; 
 import "../style/checkout.css"; 
 
-const CheckOut = () => {
+const Checkout = () => {
   const location = useLocation(); 
   const { totalCompra = 0, cantidadItems = 0 } = location.state || {}; 
 
@@ -98,4 +98,4 @@ const CheckOut = () => {
   );
 };
 
-export default CheckOut;
+export default Checkout;
