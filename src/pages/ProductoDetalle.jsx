@@ -93,7 +93,7 @@ useEffect(() => {
   return (
     <>
       <div id='producto-detalle' className="producto-detalle-container">
-        <div className="images-section">
+        <div className="images-section" ref={detalleRef}>
           <div className="main-image-container">
             <img
               src={images[selectedImage]}
@@ -132,7 +132,7 @@ useEffect(() => {
           </div>
         </div>
 
-        <div className="info-section" ref={detalleRef}>
+        <div className="info-section" >
           <div className="product-details">
             <div className="margen">
               <h1>{productoSeleccionado.nombre}</h1>
