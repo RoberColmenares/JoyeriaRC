@@ -23,7 +23,9 @@ const Productos = () => {
 
   const NaviProductos = (producto) => {
   
-    navigate(`/producto/${producto.id}#detalle-producto`);
+    navigate(`/producto/${producto.id}#producto-detalle`, {
+      state: { scrollTo: 'detalles' } // esto lo envías al componente destino
+    });
   };
 
   const handleAgregarAlCarrito = (producto, e) => {

@@ -44,8 +44,11 @@ const ProductosPorCategoria = () => {
   if (productos.length === 0) return <p>No hay productos en esta categoría.</p>;
 
   // Navegar a detalle de producto
-  const navegarProducto = (producto) => {
-    navigate(`/producto/${producto.id}#detalle-producto`);
+   const NaviProductos = (producto) => {
+  
+    navigate(`/producto/${producto.id}#producto-detalle`, {
+      state: { scrollTo: 'detalles' } // esto lo envías al componente destino
+    });
   };
 
   // Agregar producto al carrito usando contexto (sin redirigir)
@@ -66,7 +69,7 @@ const ProductosPorCategoria = () => {
             <li
               className="card-content"
               key={producto.id}
-              onClick={() => navegarProducto(producto)}
+              onClick={() => NaviProductos(producto)}
               style={{ cursor: 'pointer' }}
             >
               <div className="seg4">

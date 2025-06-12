@@ -1,37 +1,45 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { ProductosContext } from '../context/ContextApi';
 import '../style/DetalleP.css';
 import { CarritoContext } from '../context/carritoContext';
+
 const apiUrl = import.meta.env.VITE_API_URL;
 
 const ProductoDetalle = () => {
-
   const navigate = useNavigate();
   const { id } = useParams();
   const { productos, loading, error } = useContext(ProductosContext);
   const { agregarItem } = useContext(CarritoContext);
-  const { hash } = useLocation();
+  const location = useLocation();
 
   const [selectedImage, setSelectedImage] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const [productoSeleccionado, setProductoSeleccionado] = useState(null);
 
   const BASE_URL = `${apiUrl}/uploads/`;
+  const detalleRef = useRef(null);
 
+  // Scroll a sección detalle si viene en state.location
+useEffect(() => {
+  if (location.state?.scrollTo === 'detalles' && productoSeleccionado && detalleRef.current) {
+    const element = detalleRef.current;
+    element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+}, [location.state, productoSeleccionado]);
+
+  // Buscar producto seleccionado en productos
   useEffect(() => {
     if (!loading && productos.length > 0) {
-    
-
-    const encontrado = productos.find(p => p.id.toString() === id.toString());
-
-    setProductoSeleccionado(encontrado || null);
+      const encontrado = productos.find(p => p.id.toString() === id.toString());
+      setProductoSeleccionado(encontrado || null);
     }
   }, [id, productos, loading]);
 
+  // Scroll cuando hash cambia
   useEffect(() => {
-    if (hash) {
-      const element = document.querySelector(hash);
+    if (location.hash) {
+      const element = document.querySelector(location.hash);
       if (element) {
         const yOffset = -80;
         const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
@@ -40,7 +48,7 @@ const ProductoDetalle = () => {
     } else {
       window.scrollTo({ top: 0 });
     }
-  }, [hash]);
+  }, [location.hash]);
 
   const images = productoSeleccionado?.imagenes
     ? productoSeleccionado.imagenes.map(img => BASE_URL + img)
@@ -57,15 +65,20 @@ const ProductoDetalle = () => {
   };
 
   const increaseQuantity = () => {
-    if (productoSeleccionado) setQuantity(prev => (prev < productoSeleccionado.stok ? prev + 1 : prev));
+    if (productoSeleccionado) {
+      setQuantity(prev => (prev < productoSeleccionado.stok ? prev + 1 : prev));
+    }
   };
 
   const decreaseQuantity = () => {
     setQuantity(prev => (prev > 1 ? prev - 1 : prev));
   };
 
-  const navigateToProducto = (producto) => {
-    navigate(`/producto/${producto.id}#detalle-producto`);
+  const NaviProductos = (producto) => {
+  
+    navigate(`/producto/${producto.id}#producto-detalle`, {
+      state: { scrollTo: 'detalles' } // esto lo envías al componente destino
+    });
   };
 
   const handleAgregarAlCarrito = (producto, e) => {
@@ -73,22 +86,13 @@ const ProductoDetalle = () => {
     agregarItem(producto);
   };
 
-  if (loading) {
-    return <div className="loading">Cargando detalle del producto...</div>;
-  }
-
-  if (error) {
-    return <div className="error">Error: {error}</div>;
-  }
-
-
-  if (!loading && !productoSeleccionado) {
-    return <div className="not-found">Producto no encontrado</div>;
-  }
+  if (loading) return <div className="loading">Cargando detalle del producto...</div>;
+  if (error) return <div className="error">Error: {error}</div>;
+  if (!loading && !productoSeleccionado) return <div className="not-found">Producto no encontrado</div>;
 
   return (
     <>
-      <div id="detalle-producto" className="producto-detalle-container">
+      <div id='producto-detalle' className="producto-detalle-container">
         <div className="images-section">
           <div className="main-image-container">
             <img
@@ -128,7 +132,7 @@ const ProductoDetalle = () => {
           </div>
         </div>
 
-        <div className="info-section">
+        <div className="info-section" ref={detalleRef}>
           <div className="product-details">
             <div className="margen">
               <h1>{productoSeleccionado.nombre}</h1>
@@ -181,12 +185,8 @@ const ProductoDetalle = () => {
                 <p><strong>Material: </strong> {productoSeleccionado.tipo_metal}</p>
               </div>
               <div>
-                {productoSeleccionado.talla && (
-                  <p><strong>Talla:</strong> {productoSeleccionado.talla}</p>
-                )}
-                {productoSeleccionado.color && (
-                  <p><strong>Color:</strong> {productoSeleccionado.color}</p>
-                )}
+                {productoSeleccionado.talla && <p><strong>Talla:</strong> {productoSeleccionado.talla}</p>}
+                {productoSeleccionado.color && <p><strong>Color:</strong> {productoSeleccionado.color}</p>}
               </div>
             </div>
 
@@ -203,25 +203,18 @@ const ProductoDetalle = () => {
             <li
               className="card-content"
               key={p.id}
-              onClick={() => navigateToProducto(p)}
+              onClick={() => NaviProductos(p)}
             >
               <div className="seg4">
-                <img
-                  src={`${BASE_URL}/${p.imagen}`}
-                  alt={p.nombre}
-                />
+                <img src={`${BASE_URL}/${p.imagen}`} alt={p.nombre} />
               </div>
               <div className="seg1">
-                <p className="card-title">
-                  {p.tipo_metal} - {p.tipo_prenda}
-                </p>
+                <p className="card-title">{p.tipo_metal} - {p.tipo_prenda}</p>
               </div>
-
               <div className="seg2">
                 <p className="card-name">{p.nombre}</p>
                 <p className="card-description">{p.descripcion}</p>
               </div>
-
               <div className="seg3">
                 <p className="card-price">${p.precio}</p>
                 <button

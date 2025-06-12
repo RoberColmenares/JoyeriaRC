@@ -74,8 +74,12 @@ if (loading || !user) return <p>Cargando perfil...</p>;
 };
 
   const NaviProductos = (id) => {
-    navigate(`/producto/${id}`);
-  }
+    navigate(`/producto/${id}#producto-detalle`, {
+      state: { scrollTo: 'detalles' } // esto lo envías al componente destino
+    });
+  };
+
+
 
  
 

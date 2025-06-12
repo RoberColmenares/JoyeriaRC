@@ -17,7 +17,7 @@
     align-items: center;
     
     width: 80%;
-    max-height: 150px;
+    
     
     background-color: var(--color-Tercero);
     border-radius: 10px;
@@ -54,7 +54,9 @@
 }
 
 .carrito-contend img{
+
     max-width: 15%;
+    max-height: 150px;
     
 
 }
