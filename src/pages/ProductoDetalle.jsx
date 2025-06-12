@@ -3,9 +3,10 @@ import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { ProductosContext } from '../context/ContextApi';
 import '../style/DetalleP.css';
 import { CarritoContext } from '../context/carritoContext';
-const apiUrl = import.meta.env.VITE_API_URL; 
+const apiUrl = import.meta.env.VITE_API_URL;
 
 const ProductoDetalle = () => {
+
   const navigate = useNavigate();
   const { id } = useParams();
   const { productos, loading, error } = useContext(ProductosContext);
@@ -14,8 +15,20 @@ const ProductoDetalle = () => {
 
   const [selectedImage, setSelectedImage] = useState(0);
   const [quantity, setQuantity] = useState(1);
+  const [productoSeleccionado, setProductoSeleccionado] = useState(null);
 
-  // hooks siempre al inicio, sin condicionales
+  const BASE_URL = `${apiUrl}/uploads/`;
+
+  useEffect(() => {
+    if (!loading && productos.length > 0) {
+    
+
+    const encontrado = productos.find(p => p.id.toString() === id.toString());
+
+    setProductoSeleccionado(encontrado || null);
+    }
+  }, [id, productos, loading]);
+
   useEffect(() => {
     if (hash) {
       const element = document.querySelector(hash);
@@ -29,28 +42,22 @@ const ProductoDetalle = () => {
     }
   }, [hash]);
 
-  // Producto encontrado
-  const producto = productos.find(p => p.id === parseInt(id));
-
-  // URL base para imágenes
-  const BASE_URL = `${apiUrl}/uploads/`;
-  const images = producto?.imagenes
-    ? producto.imagenes.map(img => BASE_URL + img)
-    : producto
-    ? [BASE_URL + producto.imagen]
+  const images = productoSeleccionado?.imagenes
+    ? productoSeleccionado.imagenes.map(img => BASE_URL + img)
+    : productoSeleccionado
+    ? [BASE_URL + productoSeleccionado.imagen]
     : [];
 
-  // Funciones para cantidad
   const handleQuantityChange = (e) => {
     let value = parseInt(e.target.value);
     if (isNaN(value)) return;
     if (value < 1) value = 1;
-    if (producto && value > producto.stok) value = producto.stok;
+    if (productoSeleccionado && value > productoSeleccionado.stok) value = productoSeleccionado.stok;
     setQuantity(value);
   };
 
   const increaseQuantity = () => {
-    if (producto) setQuantity(prev => (prev < producto.stok ? prev + 1 : prev));
+    if (productoSeleccionado) setQuantity(prev => (prev < productoSeleccionado.stok ? prev + 1 : prev));
   };
 
   const decreaseQuantity = () => {
@@ -66,7 +73,6 @@ const ProductoDetalle = () => {
     agregarItem(producto);
   };
 
-  // Renderizado condicional SIN afectar el orden de hooks
   if (loading) {
     return <div className="loading">Cargando detalle del producto...</div>;
   }
@@ -75,11 +81,11 @@ const ProductoDetalle = () => {
     return <div className="error">Error: {error}</div>;
   }
 
-  if (!producto) {
+
+  if (!loading && !productoSeleccionado) {
     return <div className="not-found">Producto no encontrado</div>;
   }
 
-  // JSX principal
   return (
     <>
       <div id="detalle-producto" className="producto-detalle-container">
@@ -87,7 +93,7 @@ const ProductoDetalle = () => {
           <div className="main-image-container">
             <img
               src={images[selectedImage]}
-              alt={producto.nombre}
+              alt={productoSeleccionado.nombre}
               className="main-image"
               loading="lazy"
             />
@@ -112,11 +118,11 @@ const ProductoDetalle = () => {
             <div className="seller-details">
               <p>
                 <strong style={{ marginRight: '10px' }}>Publicado por:</strong>
-                {producto.vendedor_nombre} {producto.vendedor_apellido || ''}
+                {productoSeleccionado.vendedor_nombre} {productoSeleccionado.vendedor_apellido || ''}
               </p>
               <p>
                 <strong style={{ marginRight: '10px' }}>Email:</strong>{' '}
-                {producto.vendedor_correo || 'No disponible'}
+                {productoSeleccionado.vendedor_correo || 'No disponible'}
               </p>
             </div>
           </div>
@@ -125,17 +131,12 @@ const ProductoDetalle = () => {
         <div className="info-section">
           <div className="product-details">
             <div className="margen">
-              <h1>{producto.nombre}</h1>
-              <p>Precio: ${producto.precio}</p>
+              <h1>{productoSeleccionado.nombre}</h1>
+              <p>Precio: ${productoSeleccionado.precio}</p>
             </div>
 
             <div className="add-to-cart">
               <div className="quantity-selector">
-                <label htmlFor="quantity">
-                  <p>
-                    <strong></strong>
-                  </p>
-                </label>
                 <div className="input-buttons">
                   <button
                     type="button"
@@ -147,9 +148,8 @@ const ProductoDetalle = () => {
                   </button>
                   <input
                     type="number"
-                    id="quantity"
                     min="1"
-                    max={producto.stok}
+                    max={productoSeleccionado.stok}
                     value={quantity}
                     onChange={handleQuantityChange}
                   />
@@ -157,7 +157,7 @@ const ProductoDetalle = () => {
                     type="button"
                     onClick={increaseQuantity}
                     className="btn-stylec"
-                    disabled={quantity >= producto.stok}
+                    disabled={quantity >= productoSeleccionado.stok}
                   >
                     +
                   </button>
@@ -165,43 +165,33 @@ const ProductoDetalle = () => {
               </div>
               <button
                 className="btn-stylec"
-                disabled={producto.stok <= 0}
-                onClick={(e) => handleAgregarAlCarrito(producto, e)}
+                disabled={productoSeleccionado.stok <= 0}
+                onClick={(e) => handleAgregarAlCarrito(productoSeleccionado, e)}
               >
-                {producto.stok > 0 ? 'Añadir al carrito' : 'Sin stock'}
+                {productoSeleccionado.stok > 0 ? 'Añadir al carrito' : 'Sin stock'}
               </button>
             </div>
 
             <div className="product-meta">
               <div>
-                <p>
-                  <strong>Tipo: </strong> {producto.tipo_prenda}
-                </p>
-                <p>
-                  <strong>Stock: </strong> {producto.stok}
-                </p>
+                <p><strong>Tipo: </strong> {productoSeleccionado.tipo_prenda}</p>
+                <p><strong>Stock: </strong> {productoSeleccionado.stok}</p>
               </div>
               <div>
-                <p>
-                  <strong>Material: </strong> {producto.tipo_metal}
-                </p>
+                <p><strong>Material: </strong> {productoSeleccionado.tipo_metal}</p>
               </div>
               <div>
-                {producto.talla && (
-                  <p>
-                    <strong>Talla:</strong> {producto.talla}
-                  </p>
+                {productoSeleccionado.talla && (
+                  <p><strong>Talla:</strong> {productoSeleccionado.talla}</p>
                 )}
-                {producto.color && (
-                  <p>
-                    <strong>Color:</strong> {producto.color}
-                  </p>
+                {productoSeleccionado.color && (
+                  <p><strong>Color:</strong> {productoSeleccionado.color}</p>
                 )}
               </div>
             </div>
 
             <div className="product-description">
-              <p>{producto.descripcion}</p>
+              <p>{productoSeleccionado.descripcion}</p>
             </div>
           </div>
         </div>
@@ -209,38 +199,37 @@ const ProductoDetalle = () => {
 
       <div className="Card-container fade">
         <ul className="card">
-          {productos.slice(0, 4).map((producto) => (
+          {productos.slice(0, 4).map((p) => (
             <li
               className="card-content"
-              key={producto.id}
-              onClick={() => navigateToProducto(producto)}
+              key={p.id}
+              onClick={() => navigateToProducto(p)}
             >
               <div className="seg4">
-                
                 <img
-                  src={`${apiUrl}/uploads/${producto.imagen}`}
-                  alt={producto.nombre}
+                  src={`${BASE_URL}/${p.imagen}`}
+                  alt={p.nombre}
                 />
               </div>
               <div className="seg1">
                 <p className="card-title">
-                  {producto.tipo_metal} - {producto.tipo_prenda}
+                  {p.tipo_metal} - {p.tipo_prenda}
                 </p>
               </div>
 
               <div className="seg2">
-                <p className="card-name">{producto.nombre}</p>
-                <p className="card-description">{producto.descripcion}</p>
+                <p className="card-name">{p.nombre}</p>
+                <p className="card-description">{p.descripcion}</p>
               </div>
 
               <div className="seg3">
-                <p className="card-price">${producto.precio}</p>
+                <p className="card-price">${p.precio}</p>
                 <button
                   className="btn-stylec"
-                  disabled={producto.stok <= 0}
-                  onClick={(e) => handleAgregarAlCarrito(producto, e)}
+                  disabled={p.stok <= 0}
+                  onClick={(e) => handleAgregarAlCarrito(p, e)}
                 >
-                  {producto.stok > 0 ? 'Añadir al carrito' : 'Sin stock'}
+                  {p.stok > 0 ? 'Añadir al carrito' : 'Sin stock'}
                 </button>
               </div>
             </li>

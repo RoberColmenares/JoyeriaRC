@@ -24,7 +24,7 @@ const Home = () => {
      const handleAgregarAlCarrito = (producto, e) => {
     e.stopPropagation();
 
-    console.log('Intentando agregar al carrito:', producto);
+
     agregarItem(producto);
     
   };

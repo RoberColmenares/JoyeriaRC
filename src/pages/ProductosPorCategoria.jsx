@@ -18,6 +18,7 @@ const ProductosPorCategoria = () => {
       setLoading(true);
       setError(null);
       try {
+       
         const response = await fetch(`${apiUrl}/api/categoria/${categoria}`);
         const text = await response.text();
 
@@ -52,7 +53,7 @@ const ProductosPorCategoria = () => {
     e.stopPropagation();
     
 
-    console.log('Intentando agregar al carrito:', producto);
+
     agregarItem(producto);
 
   };
@@ -70,7 +71,7 @@ const ProductosPorCategoria = () => {
             >
               <div className="seg4">
                 <img
-                  src={`http://localhost:3001/uploads/${producto.imagen}`}
+                  src={`${apiUrl}/uploads/${producto.imagen}`}
                   alt={producto.nombre}
                 />
               </div>

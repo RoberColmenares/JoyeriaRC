@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom'; // solo useNavigate
+import { useParams, useNavigate } from 'react-router-dom';
 import { ProductosContext } from '../context/ContextApi';
-import { CarritoContext } from '../context/carritoContext'; // Importa el contexto del carrito
-const apiUrl = import.meta.env.VITE_API_URL;   
+import { CarritoContext } from '../context/carritoContext';
+const apiUrl = import.meta.env.VITE_API_URL;
 
 const Productos = () => {
   const { productos, loading, error } = useContext(ProductosContext);
@@ -22,15 +22,14 @@ const Productos = () => {
   if (error) return <p>Error: {error}</p>;
 
   const NaviProductos = (producto) => {
+  
     navigate(`/producto/${producto.id}#detalle-producto`);
   };
 
-    const handleAgregarAlCarrito = (producto, e) => {
+  const handleAgregarAlCarrito = (producto, e) => {
     e.stopPropagation();
-
     console.log('Intentando agregar al carrito:', producto);
     agregarItem(producto);
-
   };
 
   return (
@@ -39,7 +38,9 @@ const Productos = () => {
         <p>No hay productos en esta categoría</p>
       ) : (
         <ul className="card">
-          {productosFiltrados.map((producto) => (
+          {productosFiltrados.map((producto) => {
+      
+            return (
               <li
                 className="card-content"
                 key={producto.id}
@@ -47,7 +48,6 @@ const Productos = () => {
               >
                 <div className="seg4">
                   <img
-                  
                     src={`${apiUrl}/uploads/${producto.imagen}`}
                     alt={producto.nombre}
                   />
@@ -68,13 +68,14 @@ const Productos = () => {
                   <p className="card-price">${producto.precio}</p>
                   <button
                     className="btn-style"
-                   onClick={(e) => handleAgregarAlCarrito(producto, e)}
+                    onClick={(e) => handleAgregarAlCarrito(producto, e)}
                   >
                     Agregar al carrito
                   </button>
                 </div>
               </li>
-            ))}
+            );
+          })}
         </ul>
       )}
     </div>
