@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { ProductosContext } from '../context/ContextApi';
 import { CarritoContext } from '../context/carritoContext';
-const apiUrl = import.meta.env.VITE_API_URL;
+
 
 const Productos = () => {
   const { productos, loading, error } = useContext(ProductosContext);
@@ -49,10 +49,7 @@ const Productos = () => {
                 onClick={() => NaviProductos(producto)}
               >
                 <div className="seg4">
-                  <img
-                    src={`${apiUrl}/uploads/${producto.imagen}`}
-                    alt={producto.nombre}
-                  />
+                <img src={producto.imagen} alt={producto.nombre} />
                 </div>
 
                 <div className="seg1">
