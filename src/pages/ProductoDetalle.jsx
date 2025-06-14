@@ -4,7 +4,7 @@ import { ProductosContext } from '../context/ContextApi';
 import '../style/DetalleP.css';
 import { CarritoContext } from '../context/carritoContext';
 
-const apiUrl = import.meta.env.VITE_API_URL;
+
 
 const ProductoDetalle = () => {
   const navigate = useNavigate();
@@ -17,7 +17,7 @@ const ProductoDetalle = () => {
   const [quantity, setQuantity] = useState(1);
   const [productoSeleccionado, setProductoSeleccionado] = useState(null);
 
-  const BASE_URL = `${apiUrl}/uploads/`;
+
   const detalleRef = useRef(null);
 
   // Scroll a sección detalle si viene en state.location
@@ -50,11 +50,11 @@ useEffect(() => {
     }
   }, [location.hash]);
 
-  const images = productoSeleccionado?.imagenes
-    ? productoSeleccionado.imagenes.map(img => BASE_URL + img)
-    : productoSeleccionado
-    ? [BASE_URL + productoSeleccionado.imagen]
-    : [];
+const images = productoSeleccionado?.imagenes
+  ? productoSeleccionado.imagenes
+  : productoSeleccionado
+  ? [productoSeleccionado.imagen]
+  : [];
 
   const handleQuantityChange = (e) => {
     let value = parseInt(e.target.value);
@@ -96,7 +96,12 @@ useEffect(() => {
         <div className="images-section" ref={detalleRef}>
           <div className="main-image-container">
             
-            <img  src={p.imagen} alt={p.nombre} />
+            <img
+              src={images[selectedImage]}
+              alt={productoSeleccionado.nombre}
+              className="main-image"
+              loading="lazy"
+            />
           </div>
 
           {images.length > 1 && (
