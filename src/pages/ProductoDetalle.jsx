@@ -95,12 +95,8 @@ useEffect(() => {
       <div id='producto-detalle' className="producto-detalle-container">
         <div className="images-section" ref={detalleRef}>
           <div className="main-image-container">
-            <img
-              src={images[selectedImage]}
-              alt={productoSeleccionado.nombre}
-              className="main-image"
-              loading="lazy"
-            />
+            
+            <img  src={p.imagen} alt={p.nombre} />
           </div>
 
           {images.length > 1 && (
