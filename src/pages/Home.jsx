@@ -48,7 +48,9 @@ const Home = () => {
           <ul className="card">
             {productos.slice(0, 4).map((producto) => (
               <li className="card-content"  key={producto.id} onClick={() => NaviProductos(producto)}>
-              <div className="seg4">  <img src={`${apiUrl}/uploads/${producto.imagen}`} alt={producto.nombre} /></div>
+              <div className="seg4">
+                <img src={producto.imagen} alt={producto.nombre} />
+              </div>
                 <div className='seg1'><p className="card-title" >{producto.tipo_prenda} - {producto.tipo_metal}</p></div>
 
                 <div className='seg2'>

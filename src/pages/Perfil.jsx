@@ -122,7 +122,9 @@ if (loading || !user) return <p>Cargando perfil...</p>;
               <FaEdit style={{ color: "blue", fontSize: "2.2em" }} />
             </button>
           </div>
-                   <div><img className="seg4" src={`${apiUrl}/uploads/${pub.imagen}`} alt={pub.nombre}/></div>
+                   <div>
+                    <img className="seg4" src={pub.imagen} alt={pub.nombre} />
+                   </div>
                    
 
             <div className="seg1">

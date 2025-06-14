@@ -36,10 +36,7 @@ const Carrito = () => {
           <>
             {carrito.map((item) => (
               <div className='carrito-contend' key={item.id}>
-                <img
-                  src={`${apiUrl}/uploads/${item.imagen}`}
-                  alt={item.nombre}
-                />
+               <img src={item.imagen} alt={item.nombre} />
                 <div>
                   <p className='parra'> {item.tipo_prenda}</p> <p>{item.tipo_metal}</p>
                 </div>

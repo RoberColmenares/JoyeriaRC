@@ -4,7 +4,7 @@ import { ProductosContext } from '../context/ContextApi';
 import '../style/DetalleP.css';
 import { CarritoContext } from '../context/carritoContext';
 
-const apiUrl = import.meta.env.VITE_API_URL;
+
 
 const ProductoDetalle = () => {
   const navigate = useNavigate();
@@ -17,7 +17,7 @@ const ProductoDetalle = () => {
   const [quantity, setQuantity] = useState(1);
   const [productoSeleccionado, setProductoSeleccionado] = useState(null);
 
-  const BASE_URL = `${apiUrl}/uploads/`;
+
   const detalleRef = useRef(null);
 
   // Scroll a sección detalle si viene en state.location
@@ -206,7 +206,7 @@ useEffect(() => {
               onClick={() => NaviProductos(p)}
             >
               <div className="seg4">
-                <img src={`${BASE_URL}/${p.imagen}`} alt={p.nombre} />
+                <img src={p.imagen} alt={p.nombre} />
               </div>
               <div className="seg1">
                 <p className="card-title">{p.tipo_metal} - {p.tipo_prenda}</p>

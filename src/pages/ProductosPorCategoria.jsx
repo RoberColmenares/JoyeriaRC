@@ -73,10 +73,7 @@ const ProductosPorCategoria = () => {
               style={{ cursor: 'pointer' }}
             >
               <div className="seg4">
-                <img
-                  src={`${apiUrl}/uploads/${producto.imagen}`}
-                  alt={producto.nombre}
-                />
+                <img src={producto.imagen} alt={producto.nombre} />
               </div>
               <div className='seg1'>
                 <p className="card-title">
