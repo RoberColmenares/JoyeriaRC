@@ -206,7 +206,7 @@ useEffect(() => {
               onClick={() => NaviProductos(p)}
             >
               <div className="seg4">
-                <img src={`${BASE_URL}/${p.imagen}`} alt={p.nombre} />
+                <img  src={p.imagen} alt={p.nombre} />
               </div>
               <div className="seg1">
                 <p className="card-title">{p.tipo_metal} - {p.tipo_prenda}</p>
