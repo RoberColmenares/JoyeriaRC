@@ -3,6 +3,7 @@ import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { ProductosContext } from '../context/ContextApi';
 import '../style/DetalleP.css';
 import { CarritoContext } from '../context/carritoContext';
+BASE
 
 
 
@@ -50,11 +51,11 @@ useEffect(() => {
     }
   }, [location.hash]);
 
-  const images = productoSeleccionado?.imagenes
-    ? productoSeleccionado.imagenes.map(img => BASE_URL + img)
-    : productoSeleccionado
-    ? [BASE_URL + productoSeleccionado.imagen]
-    : [];
+const images = productoSeleccionado?.imagenes
+  ? productoSeleccionado.imagenes.map(img => img)  // ya son URLs completas
+  : productoSeleccionado
+  ? [productoSeleccionado.imagen]
+  : [];
 
   const handleQuantityChange = (e) => {
     let value = parseInt(e.target.value);
